@@ -15,6 +15,7 @@ import {
   Profile,
   SharedLayout,
   Stats,
+  EditPost,
 } from "./pages/dashboard";
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
         >
           <Route index element={<AllPosts />} />
           <Route path=":_id" element={<PostDetail />} />
-          <Route path=":_id/edit" element={<div>edit the post</div>} />
+          <Route path=":_id/edit" element={<EditPost />} />
           <Route path="new" element={<AddPost />} />
         </Route>
         <Route path="/stats" element={<div>placeholder</div>} />

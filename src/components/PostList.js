@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
+import {Link} from "react-router-dom";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
@@ -23,7 +24,12 @@ export default function PostList() {
   return posts.length > 0 ? (
     <>
       {posts.map((item) => (
-        <Post key={item._id} post={item} />
+        <div>
+          <Link to={`/posts/${item._id}`} className="btn">
+            Edit
+          </Link>
+          <Post key={item._id} post={item} />
+        </div>
       ))}
     </>
   ) : (

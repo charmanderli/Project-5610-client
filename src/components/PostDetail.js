@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import Post from "./Post";
 
 export default function PostDetail() {
   const { _id } = useParams();
   const postId = _id;
   const [post, setPost] = useState([]);
+  let navigate = useNavigate();
 
   async function deletePost(deletedId) {
+    console.log(postId);
     try {
       const res = await fetch(`http://localhost:5000/posts/${deletedId}`, {
         method: "DELETE",
@@ -16,6 +18,7 @@ export default function PostDetail() {
         throw Error("delete failed");
       }
       const data = await res.json();
+      navigate("/posts");
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -46,11 +49,14 @@ export default function PostDetail() {
       <Link to={`/posts/${postId}/edit`} className="btn">
         Edit
       </Link>
+      <Link to="/posts" className="btn">
+        Go Back
+      </Link>
 
       <button
         className="btn btn-hipster"
         onClick={() => {
-          deletePost({ postId });
+          deletePost(postId);
         }}
       >
         Delete
