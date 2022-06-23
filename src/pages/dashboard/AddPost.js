@@ -32,7 +32,7 @@ export default function AddPost({ isEditing }) {
     console.log(JSON.stringify(newPost));
 
     try {
-      const res = await fetch("http://localhost:5000/posts", {
+      const res = await fetch("api/v1/posts", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newPost),
@@ -90,6 +90,7 @@ export default function AddPost({ isEditing }) {
           </label>
           <input
             className="form-input textbox"
+            id="content"
             type="text"
             value={body}
             name="content"

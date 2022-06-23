@@ -5,13 +5,16 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/appContext";
+import Auth0ProviderWithHistory from "./components/Auth0ProviderWithHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AppProvider>
       <BrowserRouter>
-        <App />
+        <Auth0ProviderWithHistory>
+          <App />
+        </Auth0ProviderWithHistory>
       </BrowserRouter>
     </AppProvider>
   </React.StrictMode>

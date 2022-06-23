@@ -18,7 +18,7 @@ export default function EditPost() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const res = await fetch(`http://localhost:5000/posts/${postId}`);
+        const res = await fetch(`api/v1/posts/${postId}`);
         if (!res.ok) {
           throw Error("fetch failed");
         }
@@ -56,7 +56,7 @@ export default function EditPost() {
     };
 
     try {
-      const res = await fetch(`http://localhost:5000/posts/${postId}`, {
+      const res = await fetch(`api/v1/posts/${postId}`, {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newPost),
@@ -114,6 +114,7 @@ export default function EditPost() {
           </label>
           <input
             className="form-input textbox"
+            id="content"
             type="text"
             value={body}
             name="content"

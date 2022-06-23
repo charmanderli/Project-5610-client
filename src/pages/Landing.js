@@ -4,6 +4,7 @@ import main from "../assets/images/main.jpg";
 import Wrapper from "../assets/wrappers/LandingPage";
 import { Logo } from "../components";
 import { Link } from "react-router-dom";
+import LoginButton from "../components/LoginButton";
 export default function Landing() {
   return (
     <Wrapper>
@@ -20,9 +21,10 @@ export default function Landing() {
             nobis sint quo rem quaerat eius dolor, ea illum fuga saepe vel
             delectus ab quisquam inventore, nemo ratione aut? Dolorum, placeat.
           </p>
-          <Link to="/register" className="btn btn-hero">
+          <LoginButton className="btn btn-hero" />
+          {/* <Link to="/register" className="btn btn-hero">
             Login/Register
-          </Link>
+          </Link> */}
         </div>
         <img src={main} alt="main page img" className="img main-img" />
       </div>

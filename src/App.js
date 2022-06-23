@@ -1,14 +1,8 @@
 import "./index.css";
-import styled from "styled-components";
-
-import PostList from "./components/PostList";
-import LoginButton from "./components/LoginButton";
 import { Route, Routes, Link } from "react-router-dom";
-
 import PostDetail from "./components/PostDetail";
-import New from "./components/New";
 
-import { Register, Landing, Error, ProtectedRoute } from "./pages";
+import { Landing, Error, ProtectedRoute } from "./pages";
 import {
   AllPosts,
   AddPost,
@@ -22,23 +16,25 @@ function App() {
   return (
     <>
       <Routes>
+        <Route path="/posts" element={<SharedLayout />}>
+          <Route index element={<AllPosts />} />
+          <Route path=":_id" element={<PostDetail />} />
+          <Route path=":_id/edit" element={<EditPost />} />
+          <Route path="new" element={<AddPost />} />
+        </Route>
         <Route
-          path="/posts"
+          path="/"
           element={
             <ProtectedRoute>
               <SharedLayout />
             </ProtectedRoute>
           }
         >
-          <Route index element={<AllPosts />} />
-          <Route path=":_id" element={<PostDetail />} />
-          <Route path=":_id/edit" element={<EditPost />} />
-          <Route path="new" element={<AddPost />} />
+          <Route path="stats" element={<div>placeholder</div>} />
+          <Route path="profile" element={<Profile />} />
         </Route>
-        <Route path="/stats" element={<div>placeholder</div>} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/landing" element={<Landing />} />
+
+        <Route path="/" element={<Landing />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </>

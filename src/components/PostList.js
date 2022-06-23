@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function PostList() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:5000/posts");
+        const res = await fetch("api/v1/posts");
         if (!res.ok) {
           throw Error("fetch failed");
         }
