@@ -1,8 +1,22 @@
-# Getting Started with Create React App
+# Local guide forum
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Authentification: you will be directed to landing page to log in, to see the main parts of the website, this uses Auth0
+
+Pages: 
+  - "/" Landing/register
+  - "/posts" All posts
+  - "/posts/:id" Post details, where you can delete or edit the post
+  - "/posts/edit" Add a new post
+  - "/profile" User profile information after logged in
+  
+Todo:
+  - search function
+  - connect api to populate the posts
+  - revise the edit to delete to you can only edit or delete your own posts when logged in
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
