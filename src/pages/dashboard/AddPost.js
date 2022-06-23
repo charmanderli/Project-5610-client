@@ -32,7 +32,7 @@ export default function AddPost({ isEditing }) {
     console.log(JSON.stringify(newPost));
 
     try {
-      const res = await fetch("api/v1/posts", {
+      const res = await fetch("/api/posts", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newPost),
@@ -49,7 +49,7 @@ export default function AddPost({ isEditing }) {
     setUserId("");
     setTitle("");
     setCity("");
-    setSection("");
+    setSection("food");
     setBody("");
   };
 
@@ -79,7 +79,7 @@ export default function AddPost({ isEditing }) {
           <FormRowSelect
             labelText="section"
             name="section"
-            value={section}
+            value="food"
             handleChange={(e) => setSection(e.target.value)}
           />
         </div>

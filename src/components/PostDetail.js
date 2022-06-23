@@ -11,7 +11,7 @@ export default function PostDetail() {
   async function deletePost(deletedId) {
     console.log(postId);
     try {
-      const res = await fetch(`api/v1/posts/${deletedId}`, {
+      const res = await fetch(`/api/posts/${deletedId}`, {
         method: "DELETE",
       });
       if (!res.ok) {
@@ -29,7 +29,7 @@ export default function PostDetail() {
     async function fetchPost() {
       try {
         console.log(postId);
-        const res = await fetch(`http://localhost:5000/posts/${postId}`);
+        const res = await fetch(`/api/posts/${postId}`);
         if (!res.ok) {
           throw Error("fetch failed");
         }

@@ -7,7 +7,7 @@ export default function PostList() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("api/v1/posts");
+        const res = await fetch("/api/posts");
         if (!res.ok) {
           throw Error("fetch failed");
         }
