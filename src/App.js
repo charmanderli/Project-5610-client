@@ -10,6 +10,8 @@ import {
   SharedLayout,
   MyPosts,
   EditPost,
+  Joke,
+  Search,
 } from "./pages/dashboard";
 
 function App() {
@@ -20,7 +22,14 @@ function App() {
           <Route index element={<AllPosts />} />
           <Route path=":_id" element={<PostDetail />} />
           <Route path=":_id/edit" element={<EditPost />} />
-          <Route path="new" element={<AddPost />} />
+          <Route
+            path="new"
+            element={
+              <ProtectedRoute>
+                <AddPost />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route
           path="/"
@@ -32,6 +41,8 @@ function App() {
         >
           <Route path="myposts/:userid" element={<MyPosts />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="search" element={<Search />} />
+          <Route path="/joke" element={<Joke />} />
         </Route>
 
         <Route path="/" element={<Landing />} />

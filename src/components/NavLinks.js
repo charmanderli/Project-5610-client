@@ -15,7 +15,9 @@ export default function NavLinks() {
           isActive ? "nav-link active" : "nav-link"
         }
       >
-        <span className="icon">{IoBarChartSharp}</span>
+        <span className="icon">
+          <IoBarChartSharp />
+        </span>
         My posts
       </NavLink>
       {links.map((link) => {

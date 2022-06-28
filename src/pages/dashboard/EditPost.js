@@ -67,7 +67,7 @@ export default function EditPost() {
       }
       const data = await res.json();
 
-      navigate(`/posts/${data._id}`);
+      navigate(`/posts/${data._id}`, {replace: true});
     } catch (err) {
       console.log(err);
     }
@@ -83,7 +83,7 @@ export default function EditPost() {
       <form onSubmit={handleSubmit} className="form">
         <h3>Edit Post</h3>
         <div className="form-center">
-          <FormRow type="text" name="userId" value={userId} />
+          <FormRow type="text" name="userId" readonly value={userId} />
           <FormRow
             type="text"
             name="title"

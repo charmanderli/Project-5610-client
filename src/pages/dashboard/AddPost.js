@@ -59,7 +59,7 @@ export default function AddPost({ isEditing }) {
       <form onSubmit={handleSubmit} className="form">
         <h3>{!isEditing ? "Add Post" : "Edit Post"}</h3>
         <div className="form-center">
-          <FormRow type="text" name="userId" value={userId} />
+          <FormRow type="text" name="userId" readonly value={userId} />
           <FormRow
             type="text"
             name="title"
