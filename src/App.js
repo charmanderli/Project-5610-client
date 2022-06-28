@@ -8,7 +8,7 @@ import {
   AddPost,
   Profile,
   SharedLayout,
-  Stats,
+  MyPosts,
   EditPost,
 } from "./pages/dashboard";
 
@@ -30,7 +30,7 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route path="stats" element={<div>placeholder</div>} />
+          <Route path="myposts/:userid" element={<MyPosts />} />
           <Route path="profile" element={<Profile />} />
         </Route>
 

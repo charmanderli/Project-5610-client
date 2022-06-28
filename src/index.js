@@ -9,15 +9,13 @@ import Auth0ProviderWithHistory from "./components/Auth0ProviderWithHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <AppProvider>
-      <BrowserRouter>
-        <Auth0ProviderWithHistory>
-          <App />
-        </Auth0ProviderWithHistory>
-      </BrowserRouter>
-    </AppProvider>
-  </React.StrictMode>
+  <AppProvider>
+    <BrowserRouter>
+      <Auth0ProviderWithHistory>
+        <App />
+      </Auth0ProviderWithHistory>
+    </BrowserRouter>
+  </AppProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

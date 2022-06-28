@@ -3,9 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/DashboardFromPage";
 import { FormRow, FormRowSelect } from "../../components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function AddPost({ isEditing }) {
-  const [userId, setUserId] = useState("");
+  const { user } = useAuth0();
+  const userId = user.email;
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
   const [section, setSection] = useState("");
@@ -46,7 +48,6 @@ export default function AddPost({ isEditing }) {
       console.log(err);
     }
 
-    setUserId("");
     setTitle("");
     setCity("");
     setSection("food");
@@ -58,12 +59,7 @@ export default function AddPost({ isEditing }) {
       <form onSubmit={handleSubmit} className="form">
         <h3>{!isEditing ? "Add Post" : "Edit Post"}</h3>
         <div className="form-center">
-          <FormRow
-            type="text"
-            name="userId"
-            value={userId}
-            handleChange={(e) => setUserId(e.target.value)}
-          />
+          <FormRow type="text" name="userId" value={userId} />
           <FormRow
             type="text"
             name="title"
