@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import { Link } from "react-router-dom";
-import EditButton from "./EditButton";
+import ReadButton from "./ReadButton";
 
-export default function PostList({ api }) {
+export default function PostList({ api}) {
   const [posts, setPosts] = useState([]);
   // const [showButton, setShowButton] = useState(true);
   // api === "/api/posts" ? setShowButton(false) : setShowButton(true);
@@ -30,7 +30,8 @@ export default function PostList({ api }) {
     <>
       {posts.map((item) => (
         <div>
-          <EditButton item={item} />
+          <ReadButton item={item}/>
+
           <Post key={item._id} post={item} />
         </div>
       ))}

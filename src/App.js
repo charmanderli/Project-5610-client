@@ -12,6 +12,7 @@ import {
   EditPost,
   Joke,
   Search,
+  EditProfile
 } from "./pages/dashboard";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/posts" element={<SharedLayout />}>
           <Route index element={<AllPosts />} />
-          <Route path=":_id" element={<PostDetail />} />
+          <Route path=":_id" element={<PostDetail/>} />
           <Route path=":_id/edit" element={<EditPost />} />
           <Route
             path="new"
@@ -32,16 +33,17 @@ function App() {
           />
         </Route>
         <Route
-          path="/"
+          path=""
           element={
             <ProtectedRoute>
               <SharedLayout />
             </ProtectedRoute>
           }
         >
-          <Route path="myposts/:userid" element={<MyPosts />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="search" element={<Search />} />
+          <Route path="/myposts" element={<MyPosts />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/edit" element={<EditProfile />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/joke" element={<Joke />} />
         </Route>
 

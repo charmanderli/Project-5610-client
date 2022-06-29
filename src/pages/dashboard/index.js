@@ -6,6 +6,7 @@ import MyPosts from "./MyPosts";
 import EditPost from "./EditPost";
 import Search from "./Search";
 import Joke from "./Joke";
+import EditProfile from "./EditProfile";
 export {
   AllPosts,
   AddPost,
@@ -15,4 +16,5 @@ export {
   EditPost,
   Search,
   Joke,
+  EditProfile,
 };

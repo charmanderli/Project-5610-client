@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Post from "./Post";
 
-export default function PostDetail() {
+export default function PostDetail({ myPost }) {
   const { _id } = useParams();
   const postId = _id;
   const [post, setPost] = useState([]);
@@ -46,21 +46,28 @@ export default function PostDetail() {
   return (
     <>
       <Post key={postId} post={post} />
-      <Link to={`/posts/${postId}/edit`} className="btn">
-        Edit
-      </Link>
       <Link to="/posts" className="btn">
         Go Back
       </Link>
 
-      <button
-        className="btn btn-hipster"
-        onClick={() => {
-          deletePost(postId);
-        }}
-      >
-        Delete
-      </button>
+      {myPost ? (
+        <>
+          <Link to={`/posts/${postId}/edit`} className="btn">
+            Edit
+          </Link>
+
+          <button
+            className="btn btn-hipster"
+            onClick={() => {
+              deletePost(postId);
+            }}
+          >
+            Delete
+          </button>
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 }

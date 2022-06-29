@@ -6,7 +6,7 @@ export default function MyPosts() {
   const { user } = useAuth0();
   return (
     <div>
-      <PostList api={`/api/posts/myposts/${user.email}`} />
+      <PostList api={`/api/posts/myposts/${user.email}`} myPost={true} />
     </div>
   );
 }

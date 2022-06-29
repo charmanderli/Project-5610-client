@@ -1,6 +1,8 @@
-import { useState, userReducer, useContext } from "react";
+import { useState, useReducer, useContext } from "react";
 
 import React from "react";
+
+import reducer from "./reducer";
 
 const initialState = {
   isLoading: false,
@@ -12,7 +14,7 @@ const initialState = {
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [state, setState] = useState(initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
   );
