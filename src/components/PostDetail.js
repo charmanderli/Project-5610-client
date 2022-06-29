@@ -50,24 +50,20 @@ export default function PostDetail({ myPost }) {
         Go Back
       </Link>
 
-      {myPost ? (
-        <>
-          <Link to={`/posts/${postId}/edit`} className="btn">
-            Edit
-          </Link>
+      <>
+        <Link to={`/posts/${postId}/edit`} className="btn">
+          Edit
+        </Link>
 
-          <button
-            className="btn btn-hipster"
-            onClick={() => {
-              deletePost(postId);
-            }}
-          >
-            Delete
-          </button>
-        </>
-      ) : (
-        ""
-      )}
+        <button
+          className="btn btn-hipster"
+          onClick={() => {
+            deletePost(postId);
+          }}
+        >
+          Delete
+        </button>
+      </>
     </>
   );
 }
