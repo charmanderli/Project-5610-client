@@ -1,40 +1,28 @@
 import React from "react";
 import Wrapper from "../assets/wrappers/Navbar";
-import { FaAlignLeft, FaUserCircle, FaCaretDown } from "react-icons/fa";
-import Logo from "./Logo";
+import { FaAlignLeft } from "react-icons/fa";
+
+import LogoutButton from "./LogoutButton";
+import { useAppContext } from "../context/appContext";
 
 export default function Navbar() {
+  const { toggleSidebar } = useAppContext();
   return (
     <Wrapper>
       <div className="nav-center">
         <button
+          aria-label="toggle side bar"
           className="toggle-btn"
-          onClick={() => console.log("toggle side bar")}
+          onClick={toggleSidebar}
         >
           <FaAlignLeft />
         </button>
         <div>
-          <Logo />
-          <h3 className="logo-text"> dashboard</h3>
+          <h3 className="logo-text"> Dashboard </h3>
         </div>
-        <div className="btn-container">
-          <button
-            type="button"
-            className="btn"
-            onClick={() => console.log("show dropdown")}
-          >
-            <FaUserCircle />
-            Charmanderli
-            <FaCaretDown />
-          </button>
-          <div className="dropdown show-dropdown">
-            <button
-              type="button"
-              className="dropdown-btn"
-              onClick={() => console.log("logout user")}
-            ></button>
-          </div>
-        </div>
+
+        {/* {isAuthenticated ? <LogoutButton /> : <LoginButton />} */}
+        <LogoutButton />
       </div>
     </Wrapper>
   );

@@ -5,16 +5,17 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/appContext";
+import Auth0ProviderWithHistory from "./components/Auth0ProviderWithHistory";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <AppProvider>
-      <BrowserRouter>
+  <AppProvider>
+    <BrowserRouter>
+      <Auth0ProviderWithHistory>
         <App />
-      </BrowserRouter>
-    </AppProvider>
-  </React.StrictMode>
+      </Auth0ProviderWithHistory>
+    </BrowserRouter>
+  </AppProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

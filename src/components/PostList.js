@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
-import {Link} from "react-router-dom";
+import ReadButton from "./ReadButton";
 
-export default function PostList() {
+export default function PostList({ api }) {
   const [posts, setPosts] = useState([]);
+  // const [showButton, setShowButton] = useState(true);
+  // api === "/api/posts" ? setShowButton(false) : setShowButton(true);
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:5000/posts");
+        console.log(api);
+        const res = await fetch(api);
+
         if (!res.ok) {
           throw Error("fetch failed");
         }
@@ -19,15 +23,14 @@ export default function PostList() {
     }
 
     fetchData();
-  }, []);
+  }, [api]);
 
   return posts.length > 0 ? (
     <>
       {posts.map((item) => (
         <div>
-          <Link to={`/posts/${item._id}`} className="btn">
-            Edit
-          </Link>
+          <h2>{item.title}</h2>
+          <ReadButton item={item} />
           <Post key={item._id} post={item} />
         </div>
       ))}

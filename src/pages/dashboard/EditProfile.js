@@ -1,17 +1,18 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/DashboardFromPage";
 import { FormRow, FormRowSelect } from "../../components";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
-export default function AddPost({ isEditing }) {
+export default function EditProfile() {
   const { user } = useAuth0();
   const userId = user.email;
-  const [title, setTitle] = useState("");
+
+  const [username, setUsername] = useState("");
   const [city, setCity] = useState("");
-  const [section, setSection] = useState("");
-  const [body, setBody] = useState("");
+  const [bio, setBio] = useState("");
 
   let navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -23,48 +24,49 @@ export default function AddPost({ isEditing }) {
     //   section: section,
     //   body: body,
     // };
-    const newPost = {
+    const newUser = {
       userId: userId,
-      title: title,
+      username: username,
       city: city,
-      section: section,
-      body: body,
+      bio: bio,
     };
 
-    console.log(JSON.stringify(newPost));
+    console.log(JSON.stringify(newUser));
 
     try {
-      const res = await fetch("/api/posts", {
-        method: "POST",
+      const res = await fetch(`/api/profile/${userId}`, {
+        method: "PATCH",
         headers: { "Content-type": "application/json" },
-        body: JSON.stringify(newPost),
+        body: JSON.stringify(newUser),
       });
       if (!res.ok) {
         throw Error("post failed");
       }
       const data = await res.json();
-      navigate(`/posts/${data._id}`);
+      navigate("/profile", { replace: true });
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
-
-    setTitle("");
-    setCity("");
-    setSection("food");
-    setBody("");
   };
 
   return (
     <Wrapper>
+      <div>
+        <img src={user.picture} alt="user" />
+      </div>
+      <Link to="/profile" className="btn">
+        Go back
+      </Link>
       <form onSubmit={handleSubmit} className="form">
-        <h3>{!isEditing ? "Add Post" : "Edit Post"}</h3>
+        <h3>My Profile</h3>
         <div className="form-center">
           <FormRow type="text" name="userId" readonly value={userId} />
           <FormRow
             type="text"
-            name="title"
-            value={title}
-            handleChange={(e) => setTitle(e.target.value)}
+            name="username"
+            value={username}
+            handleChange={(e) => setUsername(e.target.value)}
           />
           <FormRow
             type="text"
@@ -72,25 +74,19 @@ export default function AddPost({ isEditing }) {
             value={city}
             handleChange={(e) => setCity(e.target.value)}
           />
-          <FormRowSelect
-            labelText="section"
-            name="section"
-            value="food"
-            handleChange={(e) => setSection(e.target.value)}
-          />
         </div>
 
         <div>
-          <label htmlFor={"content"} className="form-label">
-            content
+          <label htmlFor={"bio"} className="form-label">
+            bio
           </label>
           <input
             className="form-input textbox"
-            id="content"
+            id="bio"
             type="text"
-            value={body}
-            name="content"
-            onChange={(e) => setBody(e.target.value)}
+            value={bio}
+            name="bio"
+            onChange={(e) => setBio(e.target.value)}
           />
         </div>
 

@@ -1,20 +1,30 @@
-import { useState, userReducer, useContext } from "react";
+import { useState, useReducer, useContext } from "react";
 
 import React from "react";
 
+import reducer from "./reducer";
+import { TOGGLE_SIDEBAR } from "./actions";
 const initialState = {
   isLoading: false,
   showAlert: false,
   alertText: "",
   alertType: "",
+  showSidebar: false,
 };
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [state, setState] = useState(initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
+
   return (
-    <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ ...state, toggleSidebar }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 

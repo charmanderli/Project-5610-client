@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Wrapper from "../../assets/wrappers/DashboardFromPage";
 import { FormRow, FormRowSelect } from "../../components";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function EditPost() {
-  const [userId, setUserId] = useState("");
+  const { user } = useAuth0();
+  const userId = user.email;
   const [title, setTitle] = useState("");
   const [city, setCity] = useState("");
   const [section, setSection] = useState("");
@@ -18,14 +20,13 @@ export default function EditPost() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const res = await fetch(`http://localhost:5000/posts/${postId}`);
+        const res = await fetch(`/api/posts/${postId}`);
         if (!res.ok) {
           throw Error("fetch failed");
         }
         const data = await res.json();
 
         setPost(data);
-        setUserId(data.userId);
         setTitle(data.title);
         setCity(data.city);
         setSection(data.section);
@@ -36,7 +37,7 @@ export default function EditPost() {
     }
 
     fetchPost();
-  }, [postId]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,7 +57,7 @@ export default function EditPost() {
     };
 
     try {
-      const res = await fetch(`http://localhost:5000/posts/${postId}`, {
+      const res = await fetch(`/api/posts/${postId}`, {
         method: "PATCH",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(newPost),
@@ -66,11 +67,11 @@ export default function EditPost() {
       }
       const data = await res.json();
 
-      navigate(`/posts/${postId}`);
+      navigate(`/posts/${data._id}`, {replace: true});
     } catch (err) {
       console.log(err);
     }
-    setUserId("");
+
     setTitle("");
     setCity("");
     setSection("");
@@ -82,12 +83,7 @@ export default function EditPost() {
       <form onSubmit={handleSubmit} className="form">
         <h3>Edit Post</h3>
         <div className="form-center">
-          <FormRow
-            type="text"
-            name="userId"
-            value={userId}
-            handleChange={(e) => setUserId(e.target.value)}
-          />
+          <FormRow type="text" name="userId" readonly value={userId} />
           <FormRow
             type="text"
             name="title"
@@ -114,6 +110,7 @@ export default function EditPost() {
           </label>
           <input
             className="form-input textbox"
+            id="content"
             type="text"
             value={body}
             name="content"
