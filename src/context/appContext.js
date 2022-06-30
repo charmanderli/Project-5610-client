@@ -20,6 +20,7 @@ const AppProvider = ({ children }) => {
   const toggleSidebar = () => {
     dispatch({ type: TOGGLE_SIDEBAR });
   };
+
   return (
     <AppContext.Provider value={{ ...state, toggleSidebar }}>
       {children}

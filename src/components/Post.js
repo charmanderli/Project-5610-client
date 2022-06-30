@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
+import HeartButton from "./HeartButton";
 export default function Post({ post }) {
   // let postBody = post.body;
   // post.body.length >= 200
@@ -9,21 +9,14 @@ export default function Post({ post }) {
 
   return (
     <div className="postContainer">
-      <div className="postImg">
-        {/* <img src={require("./logo.png")} alt="placeholder" /> */}
-      </div>
+      <div className="postImg"></div>
       <div className="textPost">
-        <h2>{post.title}</h2>
         <p className="city">{post.city}</p>
         <p className="userId">{post.userId}</p>
         <p className="postBody">{post.body}...</p>
-        <p>likes: {post.likes}</p>
+        <HeartButton />
+        <button className="btn">{post.section}</button>
       </div>
-
-      <div className="section">
-        <div className="sectionTag">{post.section}</div>
-      </div>
-
     </div>
   );
 }

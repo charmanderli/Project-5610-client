@@ -16,14 +16,6 @@ export default function LoginButton() {
         Login/Register
         <FaCaretDown />
       </button>
-      {/* <div className="dropdown show-dropdown">
-        <button
-          aria-label="user login"
-          type="button"
-          className="dropdown-btn"
-          onClick={() => console.log("logout user")}
-        ></button>
-      </div> */}
     </div>
   );
 }

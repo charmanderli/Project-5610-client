@@ -2,14 +2,9 @@ import React from "react";
 import Wrapper from "../assets/wrappers/BigSidebar";
 import NavLinks from "./NavLinks";
 import Logo from "./Logo";
-import links from "../utils/links";
-import { NavLink } from "react-router-dom";
-import { FaAlignLeft } from "react-icons/fa";
-import { useState } from "react";
 import { useAppContext } from "../context/appContext";
 
 export default function BigSidebar() {
-  const [showMenu, setShowMenu] = useState();
   const { showSidebar } = useAppContext();
   return (
     <Wrapper>
@@ -19,7 +14,7 @@ export default function BigSidebar() {
         }
       >
         <div className="content">
-          <header >
+          <header>
             <Logo />
           </header>
 

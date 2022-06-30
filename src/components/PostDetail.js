@@ -45,25 +45,26 @@ export default function PostDetail({ myPost }) {
 
   return (
     <>
-      <Post key={postId} post={post} />
       <Link to="/posts" className="btn">
         Go Back
       </Link>
+      <Link to={`/posts/${postId}/edit`} className="btn">
+        Edit
+      </Link>
 
-      <>
-        <Link to={`/posts/${postId}/edit`} className="btn">
-          Edit
-        </Link>
+      <button
+        className="btn btn-hipster"
+        onClick={() => {
+          deletePost(postId);
+        }}
+      >
+        Delete
+      </button>
+      <h2>{post.title}</h2>
 
-        <button
-          className="btn btn-hipster"
-          onClick={() => {
-            deletePost(postId);
-          }}
-        >
-          Delete
-        </button>
-      </>
+      <Post key={postId} post={post} />
+
+      <></>
     </>
   );
 }

@@ -37,13 +37,22 @@ export default function Profile() {
       </Link>
       <h3>My Profile</h3>
       <h5>username</h5>
-      <p> {profile.username}</p>
+      {profile ? (
+        <p>{profile.name} </p>
+      ) : (
+        <p>Mysterious person, nothing here</p>
+      )}
+
       <h5>userId</h5>
-      <p> {profile.userId}</p>
+      <p> {user.email}</p>
       <h5>lives in</h5>
-      <p>{profile.city}</p>
+      {profile ? <p>{profile.name} </p> : <p>Somewhere on the planet</p>}
       <h5>About me</h5>
-      <p>{profile.bio}</p>
+      {profile ? (
+        <p>{profile.bio} </p>
+      ) : (
+        <p>Too lazy to write something here</p>
+      )}
     </>
   );
 }
