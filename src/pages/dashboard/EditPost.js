@@ -67,7 +67,7 @@ export default function EditPost() {
       }
       const data = await res.json();
 
-      navigate(`/posts/${data._id}`, {replace: true});
+      navigate(`/posts/${data._id}`, { replace: true });
     } catch (err) {
       console.log(err);
     }

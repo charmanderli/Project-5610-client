@@ -19,18 +19,18 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/posts" element={<SharedLayout />}>
+        <Route
+          path="/posts"
+          element={
+            <ProtectedRoute>
+              <SharedLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<AllPosts />} />
           <Route path=":_id" element={<PostDetail />} />
           <Route path=":_id/edit" element={<EditPost />} />
-          <Route
-            path="new"
-            element={
-              <ProtectedRoute>
-                <AddPost />
-              </ProtectedRoute>
-            }
-          />
+          <Route path="new" element={<AddPost />} />
         </Route>
         <Route
           path=""
